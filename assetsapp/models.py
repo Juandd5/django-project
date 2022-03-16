@@ -12,7 +12,7 @@ class Person(models.Model):
         max_length = 60,
         blank = True,
         null = True
-        )
+    )
 
     def __str__(self) -> str:
         return self.first_name
@@ -55,16 +55,23 @@ class Asset(models.Model):
         Person,
         blank = True,
         null = True,
-        on_delete = models.CASCADE
+        on_delete = models.SET_NULL
     )
     area = models.ForeignKey(
         Area,
         blank = True,
         null = True,
-        on_delete = models.CASCADE
+        on_delete = models.SET_NULL
     )
-    name = models.CharField('Asset Name', max_length=60)
-    serial = models.CharField('Serial', max_length=60)
+    name = models.CharField(
+        verbose_name = 'Asset Name',
+        max_length=60
+    )
+    serial = models.CharField(
+        verbose_name = 'Serial',
+        max_length=60,
+        unique = True
+    )
     purchase_price = models.DecimalField(
         verbose_name = 'Purchase Price',
         max_digits = 12,
@@ -83,6 +90,7 @@ class Asset(models.Model):
         validators = [validate_future_date]
     )
     current_status = models.CharField(
+        verbose_name = 'Current Status',
         max_length = 2,
         choices = STATUS
     )

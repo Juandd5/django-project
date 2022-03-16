@@ -1,8 +1,9 @@
 from datetime import date, timedelta
 
 from django.test import TestCase
-from assetsapp.models import Person, Area, Asset
 from django.core.exceptions import ValidationError
+
+from assetsapp.models import Person, Area, Asset
 
 
 class PersonTests(TestCase):
@@ -36,7 +37,7 @@ class AreaTests(TestCase):
 
     def test_name_max_length(self):
         area = Area.objects.get(pk=1)
-        name_length = area._meta.get_field('name').max_legth
+        name_length = area._meta.get_field('name').max_length
         self.assertEqual(name_length, 60)
 
 
@@ -80,6 +81,12 @@ class AssetTests(TestCase):
         with self.assertRaises(ValidationError):
             asset.clean()
 
-    #def test_serial_is_unique(self):
-    #    with self.assertRaises(ValidationError):
-    #        asset = Asset.objects.create(serial='123abc')
+    def test_serial_is_unique(self):
+        with self.assertRaises(ValidationError):
+            asset = Asset.objects.create(
+                name = 'Chair',
+                serial = '123abc',
+                purchase_price = 820000.00,
+                purchase_date = date.today(),
+                current_status = 'AV'
+            )
