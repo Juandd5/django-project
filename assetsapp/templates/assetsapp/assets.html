@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %} Assets {% endblock %}
+
+{% block content %} 
+
+    <div class="card">
+        <div class="card-header">
+            List Assets
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Fixed Assets</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Serial</th>
+                        <th>Purchase Price</th>
+                        <th>Purchase Date</th>
+                        <th>Leaving Date</th>
+                        <th>Current Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if assets_list %}
+                        {% for asset in assets_list %}
+                            <tr>
+                                <td>{{ asset.id }}</td>
+                                <td>{{ asset.name }}</td>
+                                <td>{{ asset.serial }}</td>
+                                <td>{{ asset.purchase_price }}</td>
+                                <td>{{ asset.purchase_date }}</td>
+                                <td>{{ asset.leaving_date }}</td>
+                                <td>{{ asset.get_current_status_display }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+            
+        </div>
+        {% if not assets_list %}
+            <div class="card-footer text-muted">
+                No assets created
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}
