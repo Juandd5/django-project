@@ -16,19 +16,15 @@
 
     <nav class="navbar navbar-expand navbar-light bg-light">
       <div class="nav navbar-nav">
-        <a class="nav-item nav-link active" href="{% url 'assetsapp:index' %}"> Home </a>
-        <a class="nav-item nav-link" href="{% url 'assetsapp:assets' %}"> Assets </a>
-        <a class="nav-item nav-link" href="#"> Persons </a>
-        <a class="nav-item nav-link" href="#"> Areas </a>
+        <a class="nav-item nav-link" href="{% url 'assetsapp:index' %}"><strong> Home </strong></a>
+        <a class="nav-item nav-link" href="{% url 'assetsapp:assets' %}"><strong> Assets </strong></a>
+        <a class="nav-item nav-link" href="#"><strong> Persons </strong></a>
+        <a class="nav-item nav-link" href="#"><strong> Areas </strong></a>
       </div>
     </nav>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          {% block content %}{% endblock %}
-        </div>
-      </div>
+    <div class="container py-4">
+      {% block content %}{% endblock %}
     </div>
 
     <!-- Bootstrap JavaScript Libraries -->
