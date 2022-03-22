@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.exceptions import ValidationError
-from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 from .models import Asset
 
@@ -55,3 +55,8 @@ def assets_list_view(request):
         'assets_list': query_set,
     }
     return render(request, 'assetsapp/assets.html', context)
+
+
+class AssetDetail(DetailView):
+    model = Asset
+    template_name = 'assetsapp/asset_detail.html'

@@ -119,24 +119,24 @@
                                 <th>Purchase Date</th>
                                 <th>Leaving Date</th>
                                 <th>Current Status</th>
-                                <th>Options</th>
+                                <th>Option</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {% if assets_list %}
-                                {% for asset in assets_list %}
-                                    <tr>
-                                        <td>{{ asset.id }}</td>
-                                        <td>{{ asset.name }}</td>
-                                        <td>{{ asset.serial }}</td>
-                                        <td>{{ asset.purchase_price }}</td>
-                                        <td>{{ asset.purchase_date }}</td>
-                                        <td>{{ asset.leaving_date }}</td>
-                                        <td>{{ asset.get_current_status_display }}</td>
-                                        <td><a name="" id="" class="btn btn-primary" href="#" role="button">Update</a></td>
-                                    </tr>
-                                {% endfor %}
-                            {% endif %}
+                        <tbody>          
+                            {% for asset in assets_list %}
+                                <tr>
+                                    <td><a href="{% url 'assetsapp:asset_detail' asset.id%}"><strong>{{ asset.id }}</strong></a></td>
+                                    <td>{{ asset.name }}</td>
+                                    <td>{{ asset.serial }}</td>
+                                    <td>${{ asset.purchase_price|floatformat:'2g' }}</td>
+                                    <td>{{ asset.purchase_date }}</td>
+                                    <td>{{ asset.leaving_date|default_if_none:'-' }}</td>
+                                    <td>{{ asset.get_current_status_display }}</td>
+                                    <td><a name="" id="" class="btn btn-primary" href="#" role="button">Update</a></td>
+                                </tr>
+                            {% empty %}
+                                <tr><td>-</td></tr>
+                            {% endfor %}                           
                         </tbody>
                     </table>
                 </div>

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %} Asset {{asset.id}} {% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            <a name="" id="" class="btn btn-secondary" href="{% url 'assetsapp:assets' %}" role="button">Back</a>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Asset</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Serial</th>
+                        <th>Purchase Price</th>
+                        <th>Purchase Date</th>
+                        <th>Leaving Date</th>
+                        <th>Current Status</th>
+                        <th>Person</th>
+                        <th>Area</th>
+                        <th>Option</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ asset.id }}</td>
+                        <td>{{ asset.name }}</td>
+                        <td>{{ asset.serial }}</td>
+                        <td>${{ asset.purchase_price|floatformat:'2g' }}</td>
+                        <td>{{ asset.purchase_date }}</td>
+                        <td>{{ asset.leaving_date|default_if_none:'-' }}</td>
+                        <td>{{ asset.get_current_status_display }}</td>
+                        <td>{{ asset.person|default_if_none:'-' }}</td>
+                        <td>{{ asset.area|default_if_none:'-' }}</td>
+                        <td><a name="" id="" class="btn btn-primary" href="#" role="button">Update</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+{% endblock  %}
