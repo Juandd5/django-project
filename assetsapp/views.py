@@ -3,6 +3,7 @@ from django.core.exceptions import ValidationError
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
+from django.http import JsonResponse
 
 from .models import Asset
 from .forms import AssetForm
