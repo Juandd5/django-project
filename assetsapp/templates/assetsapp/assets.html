@@ -101,7 +101,7 @@
     <div class="col-sm-12 col-md-6 col-lg-9 col-xl-9">
         <div class="card">
             <div class="card-header">
-                <a name="" id="" class="btn btn-success" href="{% url 'assetsapp:create_asset' %}" role="button">Add new asset</a>
+                <a name="" id="" class="btn btn-success" href="{% url 'assetsapp:asset_create' %}" role="button">Add new asset</a>
             </div>
             <div class="card-body">
                 <h4 class="card-title">Fixed Assets</h4>
@@ -126,9 +126,9 @@
                                 <td>{{ asset.serial }}</td>
                                 <td>${{ asset.purchase_price|floatformat:'2g' }}</td>
                                 <td>{{ asset.purchase_date }}</td>
-                                <td>{{ asset.leaving_date|default_if_none:'-' }}</td>
+                                <td>{{ asset.leaving_date|default_if_none:'--------------' }}</td>
                                 <td>{{ asset.get_current_status_display }}</td>
-                                <td><a name="" id="" class="btn btn-primary" href="#" role="button">Update</a></td>
+                                <td><a name="" id="" class="btn btn-primary" href="{% url 'assetsapp:asset_update' asset.id %}" role="button">Update</a></td>
                             </tr>
                         {% empty %}
                             <tr><td>-</td></tr>

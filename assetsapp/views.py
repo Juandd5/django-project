@@ -1,12 +1,11 @@
 from django.shortcuts import render
-from django.core.exceptions import ValidationError
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
-from django.http import JsonResponse
+from django.views.generic.edit import CreateView, UpdateView
 
 from .models import Asset
-from .forms import AssetForm
+from .forms import AssetCreateForm, AssetUpdateForm
 
 
 def index(request):
@@ -66,8 +65,15 @@ class AssetDetail(DetailView):
     template_name = 'assetsapp/asset_detail.html'
 
 
-class AssetCreate(CreateView):
+class AssetBaseView(View):
     model = Asset
-    form_class = AssetForm
     template_name = 'assetsapp/asset_form.html'
     success_url = reverse_lazy('assetsapp:assets')
+
+
+class AssetCreate(AssetBaseView, CreateView):
+    form_class = AssetCreateForm
+
+
+class AssetUpdate(AssetBaseView, UpdateView):
+    form_class = AssetUpdateForm
