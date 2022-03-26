@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
+from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 
 from .models import Asset
 from .forms import AssetCreateForm, AssetUpdateForm
+from .filters import AssetFilter
 
 
 def index(request):
@@ -58,6 +60,18 @@ def assets_list_view(request):
         'assets_list': query_set,
     }
     return render(request, 'assetsapp/assets.html', context)
+
+
+class AssetFilterView(ListView):
+    model = Asset
+    template_name = 'assetsapp/filter.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        assets = self.get_queryset()
+        filter = AssetFilter(self.request.GET, queryset=assets)
+        context['filter'] = filter
+        return context
 
 
 class AssetDetail(DetailView):

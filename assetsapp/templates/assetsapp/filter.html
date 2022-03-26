@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %} filter {% endblock  %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3">
+        <div class="card">
+            <div class="card-header">
+                <h4>Filter by:</h4>
+            </div>
+            <div class="card-body">
+                <form action="." method="GET">
+                    <div class="form-row py-2">
+                        <div class="form-group">
+                            <div class="row form-group py-2">
+                                {%render_field filter.form.name class="form-control" placeholder="Name..."%}
+                            </div>
+                            <div class="row form-group py-2">
+                                <div class="input-group">
+                                {%render_field filter.form.min_price class="form-control" placeholder="Min. Price..."%}
+                                {%render_field filter.form.max_price class="form-control" placeholder="Max. Price..."%}
+                                </div>
+                            </div>
+                            <div class="row form-group py-2">
+                                {{ filter.form.min_date.label }}
+                                {%render_field filter.form.min_date class="form-control" type="date"%}
+                            </div>
+                            <div class="row form-group py-2">
+                                {{ filter.form.max_date.label }}
+                                {%render_field filter.form.max_date class="form-control" type="date"%}
+                            </div>
+                            <div class="row form-group py-2">
+                                {{ filter.form.current_status.label }}
+                                {%render_field filter.form.current_status class="form-select" type="checkbox"%}
+                            </div>                            
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">Filter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-9 col-xl-9">
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-success" href="{% url 'assetsapp:asset_create' %}" role="button">Add new asset</a>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Fixed Assets</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Serial</th>
+                            <th>Purchase Price</th>
+                            <th>Purchase Date</th>
+                            <th>Leaving Date</th>
+                            <th>Current Status</th>
+                            <th>Option</th>
+                        </tr>
+                    </thead>
+                    <tbody>          
+                        {% for asset in filter.qs %}
+                            <tr>
+                                <td><a href="{% url 'assetsapp:asset_detail' asset.id%}"><strong>{{ asset.id }}</strong></a></td>
+                                <td>{{ asset.name }}</td>
+                                <td>{{ asset.serial }}</td>
+                                <td>${{ asset.purchase_price|floatformat:'2g' }}</td>
+                                <td>{{ asset.purchase_date }}</td>
+                                <td>{{ asset.leaving_date|default_if_none:'--------------' }}</td>
+                                <td>{{ asset.get_current_status_display }}</td>
+                                <td><a name="" id="" class="btn btn-primary" href="{% url 'assetsapp:asset_update' asset.id %}" role="button">Update</a></td>
+                            </tr>
+                        {% empty %}
+                            <tr><td>-</td></tr>
+                        {% endfor %}                           
+                    </tbody>
+                </table>
+            </div>
+            {% if not filter.qs %}
+                <div class="card-footer text-muted">
+                    THERE ARE NO ASSETS
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock  %}
