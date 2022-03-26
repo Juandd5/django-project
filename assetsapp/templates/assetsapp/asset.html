@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
 
-{% block title %} filter {% endblock  %}
+{% block title %} Assets {% endblock  %}
 
 {% block content %}
 <div class="row">
@@ -37,8 +37,10 @@
                             </div>                            
                         </div>
                     </div>
-                    
-                    <button type="submit" class="btn btn-success">Filter</button>
+                    <div class="text-center m-2">
+                        <button type="submit" class="btn btn-dark">Filter</button>
+                        <a class="btn btn-danger" href="{% url 'assetsapp:assets' %}" role="button">Reset</a>
+                    </div>
                 </form>
             </div>
         </div>
@@ -73,7 +75,7 @@
                                 <td>{{ asset.purchase_date }}</td>
                                 <td>{{ asset.leaving_date|default_if_none:'--------------' }}</td>
                                 <td>{{ asset.get_current_status_display }}</td>
-                                <td><a name="" id="" class="btn btn-primary" href="{% url 'assetsapp:asset_update' asset.id %}" role="button">Update</a></td>
+                                <td><a class="btn btn-primary" href="{% url 'assetsapp:asset_update' asset.id %}" role="button">Update</a></td>
                             </tr>
                         {% empty %}
                             <tr><td>-</td></tr>

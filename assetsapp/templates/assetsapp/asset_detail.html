@@ -35,7 +35,7 @@
                         <td>{{ asset.get_current_status_display }}</td>
                         <td>{{ asset.person|default_if_none:'-' }}</td>
                         <td>{{ asset.area|default_if_none:'-' }}</td>
-                        <td><a name="" id="" class="btn btn-primary" href="#" role="button">Update</a></td>
+                        <td><a name="" id="" class="btn btn-primary" href="{% url 'assetsapp:asset_update' asset.id %}" role="button">Update</a></td>
                     </tr>
                 </tbody>
             </table>

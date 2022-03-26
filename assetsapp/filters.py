@@ -1,6 +1,4 @@
 import django_filters
-from django.db.models import CharField
-from django.forms import CheckboxInput
 
 from .models import Asset
 
@@ -31,9 +29,3 @@ class AssetFilter(django_filters.FilterSet):
     class Meta:
         model = Asset
         fields = ['name', 'current_status']
-        #fields = {
-        #    'name': ['icontains'],
-        #    'purchase_price': ['lte', 'gte'],
-        #    'purchase_date': ['lte', 'gte'],
-        #    'current_status': ['in'],
-        #}
