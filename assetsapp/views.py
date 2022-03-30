@@ -5,7 +5,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from .models import Asset, Person
+from .models import Area, Asset, Person
 from .forms import AssetCreateForm, AssetUpdateForm, PersonForm
 from .filters import AssetFilter
 
@@ -76,3 +76,11 @@ class PersonUpdate(PersonBaseView, UpdateView):
 class PersonDelete(BaseModelPersonViews, DeleteView):
     template_name = "assetsapp/person_delete.html"
     success_url = reverse_lazy('assetsapp:persons')
+
+
+# Area Views
+
+class AreaView(ListView):
+    model = Area
+    template_name = 'assetsapp/area.html'
+    context_object_name = 'areas'

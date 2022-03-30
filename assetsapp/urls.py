@@ -13,4 +13,5 @@ urlpatterns = [
     path('persons/new/', views.PersonCreate.as_view(), name='person_create'),
     path('persons/<int:pk>/update/', views.PersonUpdate.as_view(), name='person_update'),
     path('persons/<int:pk>/delete/', views.PersonDelete.as_view(), name='person_delete'),
+    path('areas/', views.AreaView.as_view(), name='areas'),
 ]

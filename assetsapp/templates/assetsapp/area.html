@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %} Areas {% endblock  %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-sm-12 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-secondary" href="{% url 'assetsapp:assets' %}" role="button">Back</a>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Areas</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for area in areas %}
+                            <tr>
+                                <td>{{ area.id }}</td>
+                                <td>{{ area.name }}</td>
+                            </tr>
+                        {% empty %}
+                            <tr><td>-</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}
