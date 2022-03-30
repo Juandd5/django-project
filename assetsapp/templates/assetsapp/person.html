@@ -29,7 +29,7 @@
                         <td>{{ person.email|default_if_none:'---------' }}</td>
                         <td>
                             <a class="btn btn-primary" href="{% url 'assetsapp:person_update' person.id %}" role="button">Update</a>
-                            <a class="btn btn-danger" href="#" role="button">Delete</a>
+                            <a class="btn btn-danger" href="{% url 'assetsapp:person_delete' person.id %}" role="button">Delete</a>
                         </td>
                     </tr>
                 {% empty %}

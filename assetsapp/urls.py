@@ -11,5 +11,6 @@ urlpatterns = [
     path('assets/<int:pk>/update/', views.AssetUpdate.as_view(), name='asset_update'),
     path('persons/', views.PersonView.as_view(), name='persons'),
     path('persons/new/', views.PersonCreate.as_view(), name='person_create'),
-    path('persons/<int:pk>/update', views.PersonUpdate.as_view(), name='person_update'),
+    path('persons/<int:pk>/update/', views.PersonUpdate.as_view(), name='person_update'),
+    path('persons/<int:pk>/delete/', views.PersonDelete.as_view(), name='person_delete'),
 ]

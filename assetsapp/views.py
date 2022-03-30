@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .models import Asset, Person
 from .forms import AssetCreateForm, AssetUpdateForm, PersonForm
@@ -71,3 +71,8 @@ class PersonCreate(PersonBaseView, CreateView):
 
 class PersonUpdate(PersonBaseView, UpdateView):
     pass
+
+
+class PersonDelete(BaseModelPersonViews, DeleteView):
+    template_name = "assetsapp/person_delete.html"
+    success_url = reverse_lazy('assetsapp:persons')
