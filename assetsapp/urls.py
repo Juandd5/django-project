@@ -9,4 +9,5 @@ urlpatterns = [
     path('assets/<int:pk>', views.AssetDetail.as_view(), name="asset_detail"),
     path('assets/new/', views.AssetCreate.as_view(), name='asset_create'),
     path('assets/<int:pk>/update/', views.AssetUpdate.as_view(), name='asset_update'),
+    path('persons/', views.PersonView.as_view(), name='persons'),
 ]

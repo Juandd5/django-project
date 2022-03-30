@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %} Person {% endblock  %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <a class="btn btn-secondary" href="{% url 'assetsapp:assets' %}" role="button">Back</a>
+        <a class="btn btn-success" href="#" role="button">New Person</a>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Persons</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for person in persons %}
+                    <tr>
+                        <td>{{ person.id }}</td>
+                        <td>{{ person.first_name }}</td>
+                        <td>{{ person.last_name }}</td>
+                        <td>{{ person.email|default_if_none:'---------' }}</td>
+                        <td>
+                            <a class="btn btn-primary" href="#" role="button">Update</a>
+                            <a class="btn btn-danger" href="#" role="button">Delete</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr><td>-</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </div>
+</div>
+{% endblock  %}

@@ -5,7 +5,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 
-from .models import Asset
+from .models import Asset, Person
 from .forms import AssetCreateForm, AssetUpdateForm
 from .filters import AssetFilter
 
@@ -14,11 +14,13 @@ def index(request):
     return render(request, 'assetsapp/index.html')
 
 
-class ModelView(View):
+# Asset Views
+
+class BaseModelAssetviews(View):
     model = Asset
 
 
-class AssetView(ModelView, ListView):
+class AssetView(BaseModelAssetviews, ListView):
     template_name = 'assetsapp/asset.html'
 
     def get_context_data(self, **kwargs):
@@ -29,11 +31,11 @@ class AssetView(ModelView, ListView):
         return context
 
 
-class AssetDetail(ModelView, DetailView):
+class AssetDetail(BaseModelAssetviews, DetailView):
     template_name = 'assetsapp/asset_detail.html'
 
 
-class AssetBaseView(ModelView, View):
+class AssetBaseView(BaseModelAssetviews):
     template_name = 'assetsapp/asset_form.html'
     success_url = reverse_lazy('assetsapp:assets')
 
@@ -44,3 +46,14 @@ class AssetCreate(AssetBaseView, CreateView):
 
 class AssetUpdate(AssetBaseView, UpdateView):
     form_class = AssetUpdateForm
+
+
+# Person Views
+
+class BaseModelPersonViews(View):
+    model = Person
+
+
+class PersonView(BaseModelPersonViews, ListView):
+    template_name = 'assetsapp/person.html'
+    context_object_name = 'persons'
