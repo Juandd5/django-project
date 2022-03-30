@@ -18,7 +18,7 @@ class ModelView(View):
     model = Asset
 
 
-class AssetFilterView(ModelView, ListView):
+class AssetView(ModelView, ListView):
     template_name = 'assetsapp/asset.html'
 
     def get_context_data(self, **kwargs):
