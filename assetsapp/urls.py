@@ -10,4 +10,6 @@ urlpatterns = [
     path('assets/new/', views.AssetCreate.as_view(), name='asset_create'),
     path('assets/<int:pk>/update/', views.AssetUpdate.as_view(), name='asset_update'),
     path('persons/', views.PersonView.as_view(), name='persons'),
+    path('persons/new/', views.PersonCreate.as_view(), name='person_create'),
+    path('persons/<int:pk>/update', views.PersonUpdate.as_view(), name='person_update'),
 ]

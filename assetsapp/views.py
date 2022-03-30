@@ -6,7 +6,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 
 from .models import Asset, Person
-from .forms import AssetCreateForm, AssetUpdateForm
+from .forms import AssetCreateForm, AssetUpdateForm, PersonForm
 from .filters import AssetFilter
 
 
@@ -57,3 +57,17 @@ class BaseModelPersonViews(View):
 class PersonView(BaseModelPersonViews, ListView):
     template_name = 'assetsapp/person.html'
     context_object_name = 'persons'
+
+
+class PersonBaseView(BaseModelPersonViews):
+    template_name = 'assetsapp/person_form.html'
+    success_url = reverse_lazy('assetsapp:persons')
+    form_class = PersonForm
+
+
+class PersonCreate(PersonBaseView, CreateView):
+    pass
+
+
+class PersonUpdate(PersonBaseView, UpdateView):
+    pass

@@ -6,7 +6,7 @@
 <div class="card">
     <div class="card-header">
         <a class="btn btn-secondary" href="{% url 'assetsapp:assets' %}" role="button">Back</a>
-        <a class="btn btn-success" href="#" role="button">New Person</a>
+        <a class="btn btn-success" href="{% url 'assetsapp:person_create' %}" role="button">New Person</a>
     </div>
     <div class="card-body">
         <h4 class="card-title">Persons</h4>
@@ -28,7 +28,7 @@
                         <td>{{ person.last_name }}</td>
                         <td>{{ person.email|default_if_none:'---------' }}</td>
                         <td>
-                            <a class="btn btn-primary" href="#" role="button">Update</a>
+                            <a class="btn btn-primary" href="{% url 'assetsapp:person_update' person.id %}" role="button">Update</a>
                             <a class="btn btn-danger" href="#" role="button">Delete</a>
                         </td>
                     </tr>
