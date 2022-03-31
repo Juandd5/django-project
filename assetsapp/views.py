@@ -1,6 +1,6 @@
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
+from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -10,8 +10,8 @@ from .forms import AssetCreateForm, AssetUpdateForm, PersonForm
 from .filters import AssetFilter
 
 
-def index(request):
-    return render(request, 'assetsapp/index.html')
+class IndexView(TemplateView):
+    template_name = 'assetsapp/index.html'
 
 
 # Asset Views

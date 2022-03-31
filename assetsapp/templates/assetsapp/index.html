@@ -2,4 +2,25 @@
 
 {% block title %} Assets App {% endblock %}
 
-{% block content %} Hola mundo {% endblock %}
+{% block content %}
+<div class="p-5 bg-light">
+    <div class="container">
+        <h1 class="display-3">Welcome!</h1>
+        <p class="lead">
+            This is a project developed with Django Framework.
+            <br>
+            It's a CRUD where you can Filter, Create and Update fixed assets of a company.
+            <br>
+            You can also Create, Update and Delete persons to whom you assign fixed assets.
+            <br>
+            <br>
+            To start, click on the menu at the top left on the screen.
+        </p>
+        <hr class="my-2">
+        <p>More info</p>
+        <p class="lead">
+            <a class="btn btn-dark btn-lg" href="https://github.com/Juandd5/django-project" role="button" target="_blank">GitHub</a>
+        </p>
+    </div>
+</div> 
+{% endblock %}
